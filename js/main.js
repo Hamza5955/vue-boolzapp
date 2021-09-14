@@ -104,6 +104,13 @@ const app = new Vue({
           status: "sent",
         });
         this.newMessage = "";
+        setTimeout(() => {
+          this.contacts[this.currentChat].messages.push({
+            date: dayjs().format("DD/MM/YYYY HH:mm:ss"),
+            message: "Ok",
+            status: "received",
+          });
+        }, 3000);
       }
     },
   },
