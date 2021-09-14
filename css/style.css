@@ -18,6 +18,7 @@
 
 .bg-chat-image {
   background-image: url("../img/mine.jpg");
+  overflow-y: scroll;
 }
 
 .clickable {
@@ -76,7 +77,7 @@ body {
   );
 }
 
-#app .container {
+#root .container {
   height: 90%;
 }
 
@@ -84,6 +85,12 @@ body {
 #chat footer,
 .user-section {
   height: 70px;
+}
+/* #sidebar {
+  overflow-y: scroll;
+} */
+.overfl {
+  overflow-y: scroll;
 }
 
 .search {

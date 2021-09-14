@@ -26,7 +26,7 @@
   <body>
     <div class="container"></div>
     <div
-      id="app"
+      id="root"
       class="h-100 d-flex align-items-center justify-content-center"
     >
       <main class="container rounded shadow bg-white">
@@ -42,7 +42,7 @@
                 <figure>
                   <img class="clickable" src="img/avatar_io.jpg" alt="" />
                 </figure>
-                <div class="h6 media-text">hamza j</div>
+                <div class="h6 media-text">Hamza jj</div>
               </div>
               <div
                 class="
@@ -79,20 +79,41 @@
                 placeholder="Cerca o inizia una nuova chat..."
               />
             </section>
-            <section class="flex-grow-1 overflow-auto bg-white">
+            <!-- <section class="flex-grow-1 bg-white overfl">
               <ul class="m-0 p-0">
                 <li class="media">
                   <figure>
                     <img src="img/avatar_4.jpg" alt="" />
                   </figure>
                   <div class="h6 media-text">
-                    <div>luisa</div>
+                    <div>luissa</div>
+                  </div>
+                </li>
+              </ul>
+            </section> -->
+
+            <section class="flex-grow-1 bg-white overfl">
+              <ul class="m-0 p-0">
+                <li
+                  v-for="(contact, index) in contacts"
+                  :key="`${contact.name}${contact.avatar}`"
+                  class="media"
+                  @click="setCurrentChat(index)"
+                >
+                  <figure>
+                    <img
+                      :src="`img/avatar${contact.avatar}.jpg`"
+                      :alt="contact.name"
+                    />
+                  </figure>
+                  <div class="h6 media-text">
+                    <div>{{ contact.name }}</div>
                   </div>
                 </li>
               </ul>
             </section>
           </section>
-          <section
+          <!-- <section
             id="chat"
             class="col-8 rounded-end d-flex flex-column p-0 h-100 bg-chat-color"
           >
@@ -119,7 +140,7 @@
                 <i class="fas fa-ellipsis-v ms-3 clickable"></i>
               </div>
             </header>
-            <div class="flex-grow-1 overflow-auto bg-chat-image">
+            <div class="flex-grow-1 bg-chat-image">
               <ul>
                 <li class="msm-container p-3 sent">
                   <div class="message p-2 rounded-3">
@@ -150,10 +171,80 @@
                 </div>
               </div>
             </footer>
+          </section> -->
+          <section
+            id="chat"
+            class="col-8 rounded-end d-flex flex-column p-0 h-100 bg-chat-color"
+          >
+            <header
+              class="bg-light-gray flex-shrink-0 d-flex justify-content-between"
+            >
+              <div class="media">
+                <figure>
+                  <img
+                    class="clickable"
+                    :src="`img/avatar${contacts[currentChat].avatar}.jpg`"
+                    :alt="contacts[currentChat].name"
+                  />
+                </figure>
+                <div class="h6 media-text">
+                  <div>{{ contacts[currentChat].name }}</div>
+                </div>
+              </div>
+              <div
+                class="
+                  me-3
+                  d-flex
+                  text-muted
+                  align-items-center
+                  justify-content-around
+                "
+              >
+                <i class="fas fa-search ms-3 clickable"></i>
+                <i class="fas fa-paperclip ms-3 clickable"></i>
+                <i class="fas fa-ellipsis-v ms-3 clickable"></i>
+              </div>
+            </header>
+            <!-- Chat messages -->
+            <div class="flex-grow-1 bg-chat-image">
+              <ul>
+                <li
+                  v-for="message in contacts[currentChat].messages"
+                  class="msm-container p-3"
+                  :class="message.status"
+                >
+                  <div class="message p-2 rounded-3">
+                    <p>{{ message.message }}</p>
+                    <time datetime="2021-08-03T09:53">{{message.date}}</time>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <!-- Chat message typing -->
+            <footer class="flex-shrink-0 container-fluid">
+              <div class="row h-100 align-items-center">
+                <div class="col-1">
+                  <i class="far fa-smile fa-2x text-muted clickable"></i>
+                </div>
+                <div class="col-10">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Scrivi un messaggio"
+                    @keyup.enter="sendMessage()"
+                    v-model="newMessage"
+                  />
+                </div>
+                <div class="col-1">
+                  <i class="fas fa-microphone fa-2x text-muted clickable"></i>
+                </div>
+              </div>
+            </footer>
           </section>
         </div>
       </main>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="js/main.js"></script>
   </body>
 </html>
