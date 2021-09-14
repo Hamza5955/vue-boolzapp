@@ -113,5 +113,13 @@ const app = new Vue({
         }, 3000);
       }
     },
+    getLastSeen() {
+      const messages = this.contacts[this.currentChat].messages;
+      const receivedMessages = messages.filter(
+        (message) => message.status === "received"
+      );
+      const lastMessage = receivedMessages[receivedMessages.length - 1];
+      return lastMessage.date;
+    },
   },
 });

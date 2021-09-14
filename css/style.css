@@ -76,7 +76,9 @@ body {
     #f0f0f0 100%
   );
 }
-
+h6 {
+  font-size: 12px;
+}
 #root .container {
   height: 90%;
 }
