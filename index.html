@@ -79,12 +79,15 @@
                 type="text"
                 class="w-100"
                 placeholder="Cerca o inizia una nuova chat..."
+                v-model.trim="contactSought"
+                @keyup="filtraContsto()"
               />
             </section>
             <section class="flex-grow-1 bg-white overfl">
               <ul class="m-0 p-0">
                 <li
                   v-for="(contact, index) in contacts"
+                  v-if="contact.visible===true"
                   :key="`${contact.name}${contact.avatar}`"
                   class="media"
                   @click="setCurrentChat(index)"

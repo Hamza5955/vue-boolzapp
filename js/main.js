@@ -90,6 +90,7 @@ const app = new Vue({
     ],
     currentChat: 0,
     newMessage: "",
+    contactSought: "",
   },
   methods: {
     setCurrentChat(index) {
@@ -120,6 +121,25 @@ const app = new Vue({
       );
       const lastMessage = receivedMessages[receivedMessages.length - 1];
       return lastMessage.date;
+    },
+    filtraContsto() {
+      if (this.contactSought) {
+        this.contacts.forEach((contact) => {
+          if (
+            contact.name
+              .toUpperCase()
+              .includes(this.contactSought.toUpperCase())
+          ) {
+            contact.visible = true;
+          } else {
+            contact.visible = false;
+          }
+        });
+      } else {
+        this.contacts.forEach((contact) => {
+          contact.visible = true;
+        });
+      }
     },
   },
 });
