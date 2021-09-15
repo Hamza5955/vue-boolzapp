@@ -88,6 +88,10 @@ h6 {
 .user-section {
   height: 70px;
 }
+.timed {
+  font-size: 12px;
+  color: black;
+}
 /* #sidebar {
   overflow-y: scroll;
 } */
@@ -100,6 +104,12 @@ h6 {
   position: relative;
 }
 
+.date-k {
+  position: absolute;
+  right: 65%;
+  font-size: 12px;
+  color: black;
+}
 .search .fa-search {
   position: absolute;
   top: 50%;
